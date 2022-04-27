@@ -1,0 +1,50 @@
+﻿@using MvcExample.Application.Services.Subiekt123.Dto
+@{
+    ViewData["Title"] = "Klienci";
+}
+@model IEnumerable<ClientDto>
+
+<div class="text-center page-header">
+    <h1 class="display-6">@ViewData["Title"]</h1>
+</div>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Identyfikator podatnika</th>
+                <th scope="col">Kraj</th>
+                <th scope="col">Miasto</th>
+                <th scope="col">Adres</th>
+                <th scope="col">Kod pocztowy</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model)
+            {
+                <tr>
+                    <th>@client.Name</th>
+                    <th>@client.Tin</th>
+                    <th>@(client.Address?.Country ?? string.Empty)</th>
+                    <th>@(client.Address?.City ?? string.Empty)</th>
+                    <th>@(client.Address?.Line1 ?? string.Empty)</th>
+                    <th>@(client.Address?.ZipCode ?? string.Empty)</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-8">Brak danych</h1>
+    </div>
+}
+
+<div class="text-center">
+    <a class="text-center" asp-area="" asp-controller="Subiekt123" asp-action="Index">
+        <div class="btn btn-primary">Powrót</div>
+    </a>
+</div>

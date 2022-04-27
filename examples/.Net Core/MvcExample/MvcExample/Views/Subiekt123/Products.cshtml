@@ -1,0 +1,52 @@
+﻿@using MvcExample.Application.Services.Subiekt123.Dto
+@{
+    ViewData["Title"] = "Produkty";
+}
+@model IEnumerable<ProductDto>
+
+<div class="text-center page-header">
+    <h1 class="display-6">@ViewData["Title"]</h1>
+</div>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena netto</th>
+                <th>Waluta</th>
+                <th>Stawka VAT</th>
+                <th>Jednostka</th>
+                <th>Rodzaj</th>
+                <th>Grupa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <th>@product.Name</th>
+                    <th>@product.NetPrice</th>
+                    <th>@product.Currency</th>
+                    <th>@product.VatRate</th>
+                    <th>@product.Unit</th>
+                    <th>@product.Kind</th>
+                    <th>@product.Group</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="text-center">
+        <h1 class="display-8">Brak danych</h1>
+    </div>
+}
+
+<div class="text-center">
+    <a class="text-center" asp-area="" asp-controller="Subiekt123" asp-action="Index">
+        <div class="btn btn-primary">Powrót</div>
+    </a>
+</div>
