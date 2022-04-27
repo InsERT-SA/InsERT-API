@@ -1,6 +1,6 @@
 # How to run solution
 
-In **appsettings.json** file change **"\<set in user secrets>"** values with those retrieved from [developers portal](https://developers.insert.com.pl). To do that you can right click on **MvcExample** project and select **Manage User Secrets** in the window that will appear add below json:
+In **appsettings.json** file change **"\<set in user secrets>"** values with those retrieved from [developers portal](https://developers.insert.com.pl). To do that you can right click on **MvcExample** project and select **Manage User Secrets** and in the window that will appear add below json:
 
 ``` json
 {
