@@ -1,0 +1,36 @@
+﻿@using MvcExample.Application.Services.Subiekt123.Dto
+@{
+    ViewData["Title"] = "Subiekt 123 Integracja";
+}
+@model IEnumerable<ClientDto>
+
+<div class="text-center page-header">
+    <h1 class="display-6">@ViewData["Title"]</h1>
+</div>
+
+<div class="row">
+    <a class="col col-sm-4 text-center" asp-area="" asp-controller="Subiekt123" asp-action="Clients">
+        Wyświetl listę klientów.
+
+        <br />
+        <br />
+
+        <img src="images/customers.jpg" class="home-page-image" />
+    </a>
+    <a class="col col-sm-4 text-center"  asp-area="" asp-controller="Subiekt123" asp-action="Documents">
+        Wyświetl listę dokumentów.
+
+        <br />
+        <br />
+
+        <img src="images/documents.jpg" class="home-page-image" />
+    </a>
+    <a class="col col-sm-4 text-center" asp-area="" asp-controller="Subiekt123" asp-action="Products">
+        Wyświetl listę produktów.
+
+        <br />
+        <br />
+
+        <img src="images/products.jpg" class="home-page-image" />
+    </a>
+</div>
