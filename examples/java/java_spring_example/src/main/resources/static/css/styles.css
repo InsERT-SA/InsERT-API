@@ -1,0 +1,89 @@
+body {
+    background-color: #343c42;
+}
+
+button {
+    background-color: #1987cf;
+    border: 1px solid grey;
+    color: whitesmoke;
+    padding: 10px 32px;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: Segoe UI;
+    box-sizing: border-box;
+    box-shadow: grey;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+fieldset {
+    background-color: #4f5b64;
+    width: 40%;
+    height: 100%;
+    padding: 15px 40px 40px;
+    border-radius: 3px;
+    margin: 30px auto;
+}
+
+.big-fieldset {
+    width :60%;
+}
+
+.text {
+    font-size: 18px;
+    color: whitesmoke;
+    font-family: Segoe UI;
+}
+
+.small-button {
+    color: whitesmoke;
+    padding: 4px 5px 5px 5px;
+    width: 12%;
+    background-color: #343c42;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid grey;
+    line-height: inherit;
+    cursor: pointer;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+table {
+    width: 100%;
+    border: 2px solid darkgrey;
+}
+
+table th {
+    background-color: #343c42;
+    border: 1px solid darkgrey;
+    padding: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+
+table td {
+    border: 1px solid darkgrey;
+    padding: 20px;
+    text-align: left;
+    font-weight: normal;
+}
+
+.big-table {
+    width :15%;
+ }
+
+img {
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+
+p {
+    padding-bottom: 2px;
+}
+

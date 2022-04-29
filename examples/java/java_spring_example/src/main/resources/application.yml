@@ -1,0 +1,10 @@
+server:
+  port : 8081
+spring:
+  session:
+    jdbc:
+      initialize-schema: always
+      store-type: jdbc
+  datasource:
+    url: jdbc:h2:mem:sessions
+    driverClassName: org.h2.Driver

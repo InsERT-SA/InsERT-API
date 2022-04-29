@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Documents</title>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<fieldset class="big-fieldset">
+    <img th:src="@{/images/insert_api_mini.svg}"/>
+    <div th:if="${documents}">
+        <section th:if="${!documents.isEmpty()}">
+            <p class="text">Informacje o wystawionych dokumentach</p>
+            <table table-layout="auto">
+                <tr>
+                    <th class="text">Numer dokumnetu</th>
+                    <th class="text">Rodzaj</th>
+                    <th class="text big-table">Kupujący</th>
+                    <th class="text">Kwota netto [PLN]</th>
+                    <th class="text">Kwota brutto [PLN]</th>
+                    <th class="text big-table">Termin zapłaty</th>
+                    <th class="text">Status płatności</th>
+                </tr>
+                <tr th:each="doc: ${documents}">
+                    <td th:text="${doc.getDocumentNumber()}" class="text"></td>
+                    <td th:text="${doc.getKind()}" class="text"></td>
+                    <td th:text="${doc.getClient()}" class="text"></td>
+                    <td th:text="${doc.getTotalNetPln()}" class="text"></td>
+                    <td th:text="${doc.getTotalGrossPln()}" class="text"></td>
+                    <td th:text="${doc.getDueDate()}" class="text" ></td>
+                    <td th:text="${doc.getPaymentState()}" class="text"></td>
+                </tr>
+            </table>
+        </section>
+        <p th:if="${documents.isEmpty()}" class="text">Brak dokumentów</p>
+    </div><br>
+    <a href="/subiekt123/api">
+        <button class="small-button">WSTECZ</button></a>
+</fieldset>
+</body>
+</html>

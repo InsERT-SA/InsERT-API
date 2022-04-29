@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<fieldset class="big-fieldset">
+    <img th:src="@{/images/insert_api_mini.svg}"/>
+        <div th:if="${clients}">
+            <section th:if="${!clients.isEmpty()}">
+                <p class="text">Informacje o klientach</p>
+                    <table>
+                        <tr>
+                            <th class="text">Imię i nazwisko/ Nazwa firmy</th>
+                            <th class="text" width="30%">Adres</th>
+                            <th class="text">Rodzaj identyfikatora podatkowego</th>
+                            <th class="text">Identyfikator podatkowy</th>
+                        </tr>
+                        <tr th:each="client: ${clients}">
+                            <td th:text="${client.getName()}" class="text"></td>
+                            <td th:utext="|
+                                    ${#objects.nullSafe(client.address.getLine1(), '')} <br/>
+                                    ${#objects.nullSafe(client.address.getZipCode(), '')}
+                                    ${#objects.nullSafe(client.address.getCity(), '')}
+                                    ${#objects.nullSafe(client.address.getCountry(),'')}|" class="text"></td>
+                            <td th:text="${client.getTinKind()}" class="text uppercase"></td>
+                            <td th:text="${client.getTin()}" class="text"></td>
+                        </tr>
+                    </table>
+                </section>
+            <p th:if="${clients.isEmpty()}" class="text">Brak klientów</p>
+        </div><br>
+            <a href="/subiekt123/api">
+            <button class="small-button">WSTECZ</button></a>
+</fieldset>
+</body>
+</html>

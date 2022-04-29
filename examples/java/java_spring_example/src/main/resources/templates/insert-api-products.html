@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<fieldset class="big-fieldset">
+    <img th:src="@{/images/insert_api_mini.svg}"/>
+    <div th:if="${products}">
+        <section th:if="${!products.isEmpty()}">
+            <p class="text">Informacje o produktach</p>
+            <table table-layout="auto">
+                <tr>
+                    <th class="text">Nazwa</th>
+                    <th class="text">Kwota netto</th>
+                    <th class="text">Kwota brutto</th>
+                    <th class="text">Waluta</th>
+                    <th class="text">Stawka VAT</th>
+                    <th class="text">Grupa produktu</th>
+                </tr>
+                <tr th:each="product: ${products}">
+                    <td th:text="${product.getName()}" class="text"></td>
+                    <td th:text="${product.getNetPrice()}" class="text"></td>
+                    <td th:text="${product.getGrossPrice()}" class="text"></td>
+                    <td th:text="${product.getCurrency()}" class="text"></td>
+                    <td th:text="${product.getVatRate()}" class="text"></td>
+                    <td th:text="${product.getGroup()}" class="text"></td>
+                </tr>
+            </table>
+        </section>
+        <p th:if="${products.isEmpty()}" class="text">Brak produktów</p>
+    </div><br>
+    <a href="/subiekt123/api">
+        <button class="small-button">WSTECZ</button></a>
+</fieldset>
+</body>
+</html>

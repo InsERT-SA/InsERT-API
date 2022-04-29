@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Api Subiekt 123</title>
+    <link type="text/css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div>
+    <form method="get" th:action="@{/subiekt123/api}"></form>
+</div>
+<div>
+    <fieldset>
+        <img th:src="@{/images/insert_api_mini.svg}"/>
+        <p class="text">Wybierz opcję, dane zostaną pobrane z Subiekta 123</p>
+        <a href="/clients">
+            <button>POBIERZ INFORMACJE O KLIENTACH</button></a><br><br>
+        <a href="/documents">
+            <button>POBIERZ INFORMACJE O WYSTAWIONYCH DOKUMENTACH</button></a><br><br>
+        <a href="/products">
+            <button>POBIERZ INFORMACJE O PRODUKTACH</button></a><br>
+    </fieldset><br>
+</div>
+</body>
+</html>
