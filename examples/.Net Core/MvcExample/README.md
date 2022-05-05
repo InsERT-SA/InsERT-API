@@ -1,6 +1,9 @@
-# How to run solution
+# Jak skorzystać z rozwiązania
 
-W pliku **appsettings.json** podmień wartości **"\<set in user secrets>"** na te pobrane z [portalu dewelopera](https://developers.insert.com.pl). Aby podmienieć wartości można skorzystać z opcji **Manage User Secrets** w Visual Studio. W tym celu kilkamy prawym przyciskiem myszy na projekt **MvcExample** i wybranie z menu kontekstowego **Manage User Secrets**. W oknie które się otworzy dodjamy poniższy json:
+W pliku **appsettings.json** zmień wartości **"\<set in user secrets>"**  na te uzyskane w [portalu dewelopera](https://developers.insert.com.pl). 
+Aby podmienieć wartości można skorzystać z opcji **Manage User Secrets** w Visual Studio. 
+W tym celu kilkamy prawym przyciskiem myszy na projekt **MvcExample** i wybranie z menu kontekstowego **Manage User Secrets**. 
+W oknie które się otworzy dodajemy poniższy json:
 
 ``` json
 {
@@ -14,7 +17,7 @@ W pliku **appsettings.json** podmień wartości **"\<set in user secrets>"** na 
 }
 ```
 
-możemy również po prostu wyedytować plik **appsettings.json**
+Możliwe jest również wyedytowanie pliku **appsettings.json**
 
 ``` json
 ...

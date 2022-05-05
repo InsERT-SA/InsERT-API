@@ -1,7 +1,5 @@
 package pl.com.insert.api.data;
 
-import org.springframework.beans.factory.annotation.Value;
-
 public class Properties {
 
     private Properties() {
