@@ -1,5 +1,4 @@
- Przed uruchomieniem aplikacji należy uzupełnić dane w klasie _Properties_ 
-na podstawie utworzonej w InsERT API aplikacji:
+Przed uruchomieniem należy uzupełnić dane w klasie Properties, na podstawie danych uzyskanych po zarejestrowaniu aplikacji w portalu dewelopera InsERT API.
 1. **CLIENT_ID**: Moje aplikacje -> [Twoja aplikacja] -> Client ID
 2. **SECRET_ID**: Moje aplikacje -> [Twoja aplikacja] -> Client Secret
 3. **MY_APPLICATION**: Moje aplikacje -> [Twoja aplikacja] -> Strona aplikacji
