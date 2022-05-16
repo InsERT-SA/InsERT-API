@@ -5,7 +5,7 @@ public class Properties {
     private Properties() {
     }
 
-    public static final String API_ADDRESS = "https://api.subiekt123.pl";
+    public static final String API_ADDRESS = "https://api.subiekt123.pl/1.0";
     public static final String MY_APPLICATION = "http://localhost:8081";
     public static final String REGISTRATION_ID = "devportal";
     public static final String CLIENT_ID = ""; /* do uzupełnienia */

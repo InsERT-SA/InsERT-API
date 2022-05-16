@@ -23,12 +23,13 @@ public class InsertApiService {
     public List<Client> getClients(String accessToken) {
         try {
             ResponseEntity<Client[]> response = restTemplate.exchange(
-                    API_ADDRESS + "/clients?PageSize=10",
+                    API_ADDRESS + "/clients?pageSize=10",
                     HttpMethod.GET,
                     HeadersProvider.entity(accessToken),
                     Client[].class);
             return Arrays.asList(response.getBody());
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return new ArrayList<Client>();
         }
     }
@@ -42,6 +43,7 @@ public class InsertApiService {
                     Document[].class);
             return Arrays.asList(response.getBody());
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return new ArrayList<Document>();
         }
     }
@@ -55,6 +57,7 @@ public class InsertApiService {
                     Product[].class);
             return Arrays.asList(response.getBody());
         } catch (HttpClientErrorException e) {
+            e.printStackTrace();
             return new ArrayList<Product>();
         }
     }
