@@ -15,9 +15,9 @@ public class Properties {
     public static final String[] SCOPE = {"openid", "profile", "email", "subiekt123", "offline_access"};
     public static final String AUTHENTICATION_URL = "oauth2/authorization/" + REGISTRATION_ID;
 
-    public static final String AUTH_URL = "https://kontoapi.chmura.insert.pl/connect/authorize";
-    public static final String ACCESS_TOKEN_URL = "https://kontoapi.chmura.insert.pl/connect/token";
-    public static final String JWK_SET_URI = "https://kontoapi.chmura.insert.pl/.well-known/openid-configuration/jwks";
-    public static final String USER_INFO_URL = "https://kontoapi.chmura.insert.pl/connect/userinfo";
+    public static final String AUTH_URL = "https://kontoapi.insert.com.pl/connect/authorize";
+    public static final String ACCESS_TOKEN_URL = "https://kontoapi.insert.com.pl/connect/token";
+    public static final String JWK_SET_URI = "https://kontoapi.insert.com.pl/.well-known/openid-configuration/jwks";
+    public static final String USER_INFO_URL = "https://kontoapi.insert.com.pl/connect/userinfo";
     public static final String USER_NAME_ATTRIBUTE = "email";
 }
