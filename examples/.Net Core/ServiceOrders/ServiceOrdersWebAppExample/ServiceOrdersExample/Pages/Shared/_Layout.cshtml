@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = ViewData["Title"] != null ? ViewData["Title"] : "Śledzenie zleceń serwisowych";
+    ViewData["HeaderSiteName"] = ViewData["HeaderSiteName"] != null ? ViewData["HeaderSiteName"] : "Śledzenie zleceń serwisowych";
+}
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" />
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="header__site-name">@ViewData["HeaderSiteName"]</div>
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            Copyright © <span>@DateTime.Now.Year</span> <strong>InsERT S.A.</strong>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

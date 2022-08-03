@@ -1,0 +1,176 @@
+﻿@page "{urlIdZgloszenia}"
+@model ServiceOrdersExample.Pages.ServiceOrders.HistoriaZgloszeniaModel
+@{
+    System.Globalization.CultureInfo culture = System.Globalization.CultureInfo.CreateSpecificCulture("pl-PL");
+    if (!String.IsNullOrWhiteSpace(Model.ServiceOrder.Number))
+    {
+        ViewData["Title"] = $"Historia zgłoszenia nr {Model.ServiceOrder.Number}";
+    }
+    else
+    {
+        ViewData["Title"] = "Historia zgłoszenia";
+    }
+}
+
+<div class="identify">
+    <section class="identify__container identify__container--left">
+        @if (!String.IsNullOrWhiteSpace(Model.ServiceOrder.Number))
+        {
+            <div>Zgłoszenie <strong>nr @Model.ServiceOrder.Number</strong> z dnia @Model.ServiceOrder.FilingDate.ToString("d MMMM yyyy", culture)</div>
+        }
+        else
+        {
+            <div>Zgłoszenie z dnia @Model.ServiceOrder.FilingDate.ToString("d MMMM yyyy", culture)</div>
+        }
+
+        @if (!String.IsNullOrWhiteSpace(Model.ServiceOrder.Type))
+        {
+            if (Model.Device != null)
+            {
+                <h1 class="identify__title">@Model.Device.Name - @Model.ServiceOrder.Type.ToLower()</h1>
+            }
+            else
+            {
+                <h1 class="identify__title">@Model.ServiceOrder.Type</h1>
+            }
+        }
+        else if (Model.Device != null)
+        {
+            <h1 class="identify__title">@Model.Device.Name</h1>
+        }
+
+    </section>
+    <div class="identify__container identify__container--right">
+        <strong>Aktualizacja:</strong> @Model.ServiceOrder.LastModificationDate.Value.ToString("g", culture))
+    </div>
+</div>
+<div class="content">
+    <div class="content__container content__container--left">
+        <section class="section">
+            <h2 class="section__title section__title--mb section__title--regular">Aktualny status:</h2>
+            <div class="status">
+                @if (Model.ServiceOrder.ServiceFinishDate.HasValue)
+                {
+                    <img src="../images/service-finished.svg" class="status__icon">
+                }
+                else
+                {
+                    <img src="../images/service-in-progress.svg" class="status__icon">
+                }
+
+                <div class="status__label">@Model.ServiceOrder.Status</div>
+                @if (@Model.ServiceOrder.ExpectedServiceFinishDate.HasValue)
+                {
+                    <div class="status__info">(Planowany termin realizacji: @Model.ServiceOrder.ExpectedServiceFinishDate.Value.ToString("d", culture))</div>
+                }
+            </div>
+        </section>
+        <hr>
+        <section class="section">
+
+            @if (!String.IsNullOrEmpty(Model.ServiceOrder.Description))
+            {
+                <h2 class="section__title">Opis problemu:</h2>
+                <div class="section__describe">@Model.ServiceOrder.Description</div>
+            }
+
+            @if (!String.IsNullOrEmpty(Model.ServiceOrder.Diagnosis))
+            {
+                <h2 class="section__title">Diagnoza:</h2>
+                <div class="section__describe">@Model.ServiceOrder.Diagnosis</div>
+            }
+
+            @if (!String.IsNullOrEmpty(Model.ServiceOrder.ExpectedPrice))
+            {
+                <h2 class="section__title">Wycena dla klienta:</h2>
+                <div class="section__describe">@Model.ServiceOrder.ExpectedPrice</div>
+            }
+
+        </section>
+
+        @if (Model.HistoricalEntries.Any())
+        {
+            <hr>
+            <section class="section">
+                <h2 class="section__title section__title--mb">Przebieg zgłoszenia</h2>
+                <table class="progress">
+                    <thead>
+                        <tr>
+                            <th class="progress__date-label">Data</th>
+                            <th class="progress__status-label">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var entry in Model.HistoricalEntries)
+                        {
+                            <tr>
+                                <td>@entry.CreationDate.ToString("g", culture)</td>
+                                <td>@entry.PreviousStatus</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </section>
+        }
+
+    </div>
+    <aside class="content__container content__container--right">
+        @if (Model.Device != null)
+        {
+            <h2 class="section__title">Dane:</h2>
+            <div class="section__rightpanel">
+                <ul class="simple-list">
+                    @if (!String.IsNullOrEmpty(Model.Device.Name))
+                    {
+                        <li>Nazwa: @Model.Device.Name</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Device.Symbol))
+                    {
+                        <li>Symbol: @Model.Device.Symbol</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Device.SerialNumber))
+                    {
+                        <li>Numer seryjny: @Model.Device.SerialNumber</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Device.Manufacturer))
+                    {
+                        <li>Producent: @Model.Device.Manufacturer</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Device.Model))
+                    {
+                        <li>Model: @Model.Device.Model</li>
+                    }
+                </ul>
+            </div>
+        }
+
+        <div>
+            <h2 class="section__title">Dane firmy:</h2>
+            <div class="section__rightpanel">
+                <ul class="simple-list">
+                    <li>Nazwa: @Model.Company.Name</li>
+
+                    @if (!String.IsNullOrEmpty(Model.Company.Address))
+                    {
+                        <li>Adres: @Model.Company.Address</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Company.Email))
+                    {
+                        <li>E-mail: @Model.Company.Email</li>
+                    }
+
+                    @if (!String.IsNullOrEmpty(Model.Company.PhoneNumber))
+                    {
+                        <li>Telefon: @Model.Company.PhoneNumber</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>
+

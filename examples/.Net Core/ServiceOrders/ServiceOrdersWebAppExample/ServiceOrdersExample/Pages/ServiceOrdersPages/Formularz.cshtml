@@ -1,0 +1,199 @@
+﻿@page 
+@model ServiceOrdersExample.Pages.ServiceOrders.FormularzModel
+@{
+    ViewData["Title"] = "Zgłoszenie zlecenia";
+    ViewData["HeaderSiteName"] = "Zgłoszenie zlecenia";
+}
+
+<div class="text-center">Wypełnij formularz aby zgłosić zlecenie</div>
+
+<div class="identify identify--tight">
+    <section class="identify__container identify__container--left">
+        <h2 class="section__title">Zgłoszenie do firmy:</h2>
+        <div>
+            <ul class="simple-list">
+                <li>Przykładowa firma</li>
+                <li>Adres: Adres</li>
+                <li>E-mail: example@email.com</li>
+                <li>Telefon: 000-000-000</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<div class="content content--tight">
+        <form class="form" id="form-id" method="POST">
+
+            <input type="hidden" asp-for="Company.Name" />
+            <input type="hidden" asp-for="Company.Address" />
+            <input type="hidden" asp-for="Company.Email" />
+            <input type="hidden" asp-for="Company.PhoneNumber" />
+
+            <h2 class="form__title form__title--bold">Dane:</h2>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="Device.Name" placeholder=" " />
+                        <label asp-for="Device.Name"></label>
+                        <span asp-validation-for="Device.Name"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="Device.SerialNumber" placeholder=" " />
+                        <label asp-for="Device.SerialNumber"></label>
+                        <span asp-validation-for="Device.SerialNumber"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="Device.Manufacturer" placeholder=" " />
+                        <label asp-for="Device.Manufacturer"></label>
+                        <span asp-validation-for="Device.Manufacturer"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="Device.Model" placeholder=" " />
+                        <label asp-for="Device.Model"></label>
+                        <span asp-validation-for="Device.Model"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__field">
+                <textarea asp-for="ServiceRegistration.Description" placeholder=" "></textarea>
+                <label asp-for="ServiceRegistration.Description"></label>
+                <span asp-validation-for="ServiceRegistration.Description"></span>
+            </div>
+
+            <h2 class="form__title form__title--bold">Dane klienta:</h2>
+
+            <div class="form__radio-group">
+                <input asp-for="ServiceRegistration.IsCompany" type="radio" class="radio_isCompany" id="client-company" value="true" data-toggle="collapse" data-target="#client-company-inputs:not(.show)" checked />
+                <label for="client-company">Firma</label>
+
+                <input asp-for="ServiceRegistration.IsCompany" type="radio" class="radio_isCompany" id="client-customer" value="false" data-toggle="collapse" data-target="#client-company-inputs.show" />
+                <label for="client-customer">Osoba fizyczna</label>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.FirstName" placeholder=" " />
+                        <label asp-for="ServiceRegistration.FirstName"></label>
+                        <span asp-validation-for="ServiceRegistration.FirstName"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.LastName" placeholder=" " />
+                        <label asp-for="ServiceRegistration.LastName"></label>
+                        <span asp-validation-for="ServiceRegistration.LastName"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse show" id="client-company-inputs">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="form__field">
+                            <input asp-for="ServiceRegistration.CompanyName" placeholder=" " />
+                            <label asp-for="ServiceRegistration.CompanyName"></label>
+                            <span asp-validation-for="ServiceRegistration.CompanyName"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form__field">
+                            <input asp-for="ServiceRegistration.NIP" placeholder=" " />
+                            <label asp-for="ServiceRegistration.NIP"></label>
+                            <span asp-validation-for="ServiceRegistration.NIP"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__title">Adres</div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.Street" placeholder=" " />
+                        <label asp-for="ServiceRegistration.Street"></label>
+                        <span asp-validation-for="ServiceRegistration.Street"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.HouseNumber" placeholder=" " />
+                        <label asp-for="ServiceRegistration.HouseNumber"></label>
+                        <span asp-validation-for="ServiceRegistration.HouseNumber"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.FlatNumber" placeholder=" " />
+                        <label asp-for="ServiceRegistration.FlatNumber"></label>
+                        <span asp-validation-for="ServiceRegistration.FlatNumber"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.Postcode" placeholder=" " />
+                        <label asp-for="ServiceRegistration.Postcode"></label>
+                        <span asp-validation-for="ServiceRegistration.Postcode"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm-9">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.City" placeholder=" " />
+                        <label asp-for="ServiceRegistration.City"></label>
+                        <span asp-validation-for="ServiceRegistration.City"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form__title">Kontakt</div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.Email" placeholder=" " />
+                        <label asp-for="ServiceRegistration.Email"></label>
+                        <span asp-validation-for="ServiceRegistration.Email"></span>
+
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form__field">
+                        <input asp-for="ServiceRegistration.PhoneNumber" type="tel" placeholder=" " />
+                        <label asp-for="ServiceRegistration.PhoneNumber"></label>
+                        <span asp-validation-for="ServiceRegistration.PhoneNumber"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn--submit">
+                Wyślij zgłoszenie
+            </button>
+
+        </form>
+    </div>
+</div>

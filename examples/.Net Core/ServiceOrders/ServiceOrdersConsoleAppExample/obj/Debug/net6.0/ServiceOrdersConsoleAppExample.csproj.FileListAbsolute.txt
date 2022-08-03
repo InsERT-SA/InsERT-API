@@ -1,0 +1,17 @@
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.csproj.AssemblyReference.cache
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.AssemblyInfoInputs.cache
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.AssemblyInfo.cs
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.csproj.CoreCompileInputs.cache
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\ServiceOrdersConsoleAppExample.exe
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\ServiceOrdersConsoleAppExample.deps.json
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\ServiceOrdersConsoleAppExample.runtimeconfig.json
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\ServiceOrdersConsoleAppExample.dll
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\ServiceOrdersConsoleAppExample.pdb
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.csproj.CopyComplete
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.dll
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\refint\ServiceOrdersConsoleAppExample.dll
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.pdb
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ServiceOrdersConsoleAppExample.genruntimeconfig.cache
+C:\Users\tkumiega.INSERT-AD\source\repos\ServiceOrdersConsoleAppExample\ServiceOrdersConsoleAppExample\obj\Debug\net6.0\ref\ServiceOrdersConsoleAppExample.dll
