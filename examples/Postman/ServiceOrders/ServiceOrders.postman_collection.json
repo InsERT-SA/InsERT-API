@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "720d9b28-1997-4617-bd73-4ce2f7592dc1",
+		"name": "ServiceOrders",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7191555"
+	},
+	"item": [
+		{
+			"name": "serviceRegistration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nip\": \"8304531760\",\r\n  \"isCompany\": true,\r\n  \"companyName\": \"ABC s.c.\",\r\n  \"firstName\": \"\",\r\n  \"lastName\": \"\",\r\n  \"street\": \"Polanka\",\r\n  \"houseNumber\": \"12\",\r\n  \"flatNumber\": \"6\",\r\n  \"postcode\": \"54-365\",\r\n  \"city\": \"Wrocław\",\r\n  \"email\": \"info@abc.pl\",\r\n  \"phoneNumber\": \"123-123-123\",\r\n  \"description\": \"Klimatyzator nie działa. Po włączeniu zasilania brak jakiejkolwiek reakcji.\",\r\n  \"devices\": [\r\n    {\r\n      \"name\": \"Klimatyzator przenośny VIVAX Style\",\r\n      \"symbol\": \"ACP09\",\r\n      \"serialNumber\": null,\r\n      \"manufacturer\": null,\r\n      \"model\": null\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serviceOrders_url}}/serviceRegistration",
+					"host": [
+						"{{serviceOrders_url}}"
+					],
+					"path": [
+						"serviceRegistration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "serviceOrder",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{serviceOrders_url}}/serviceOrder/{{serviceRegistrationUrlId}}",
+					"host": [
+						"{{serviceOrders_url}}"
+					],
+					"path": [
+						"serviceOrder",
+						"{{serviceRegistrationUrlId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ServiceRegistrationUrlId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
