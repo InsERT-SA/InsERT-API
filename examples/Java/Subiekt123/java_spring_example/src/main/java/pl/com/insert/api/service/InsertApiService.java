@@ -23,7 +23,7 @@ public class InsertApiService {
     public List<Client> getClients(String accessToken) {
         try {
             ResponseEntity<Client[]> response = restTemplate.exchange(
-                    API_ADDRESS + "/clients?pageSize=10",
+                    API_ADDRESS + "/clients?pageSize=10&pageNumber=0",
                     HttpMethod.GET,
                     HeadersProvider.entity(accessToken),
                     Client[].class);
@@ -37,7 +37,7 @@ public class InsertApiService {
     public List<Document> getDocuments(String accessToken) {
         try {
             ResponseEntity<Document[]> response = restTemplate.exchange(
-                    API_ADDRESS + "/documents?pageSize=10",
+                    API_ADDRESS + "/documents?pageSize=10&pageNumber=0",
                     HttpMethod.GET,
                     HeadersProvider.entity(accessToken),
                     Document[].class);
@@ -51,7 +51,7 @@ public class InsertApiService {
     public List<Product> getProducts(String accessToken) {
         try {
             ResponseEntity<Product[]> response = restTemplate.exchange(
-                    API_ADDRESS + "/products?pageSize=10",
+                    API_ADDRESS + "/products?pageSize=10&pageNumber=0",
                     HttpMethod.GET,
                     HeadersProvider.entity(accessToken),
                     Product[].class);
