@@ -22,7 +22,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{subiekt123_url}}/documents?pageSize=10",
+					"raw": "{{subiekt123_url}}/documents?pageSize=10&pageNumber=0",
 					"host": [
 						"{{subiekt123_url}}"
 					],
@@ -33,6 +33,10 @@
 						{
 							"key": "pageSize",
 							"value": "10"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0"
 						}
 					]
 				}
@@ -56,7 +60,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{subiekt123_url}}/clients?pageSize=10",
+					"raw": "{{subiekt123_url}}/clients?pageSize=10&pageNumber=0",
 					"host": [
 						"{{subiekt123_url}}"
 					],
@@ -67,6 +71,10 @@
 						{
 							"key": "pageSize",
 							"value": "10"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0"
 						}
 					]
 				}
@@ -90,7 +98,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{subiekt123_url}}/products?pageSize=10",
+					"raw": "{{subiekt123_url}}/products?pageSize=10&pageNumber=0",
 					"host": [
 						"{{subiekt123_url}}"
 					],
@@ -101,6 +109,10 @@
 						{
 							"key": "pageSize",
 							"value": "10"
+						},
+						{
+							"key": "pageNumber",
+							"value": "0"
 						}
 					]
 				}
