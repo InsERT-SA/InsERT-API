@@ -1,0 +1,244 @@
+﻿@page "/details/{CustomerSubmissionUrlId}"
+@inject ICustomerSubmissionClient CustomerSubmissionClient
+
+<PageTitle>Szczegóły zgłoszenia</PageTitle>
+
+@if (CustomerSubmission == null)
+{
+    <h1>Nie znaleziono zgłoszenia.</h1>
+    <p>Nie udało się pobrać zgłoszenia.</p>
+}
+else
+{
+    <section class="core t-dark">
+        <div class="content-wide t-16">
+            <div class="d-flex m-bottom-30">
+                <div class="t-36 t-darker m-right-auto">
+                    Śledzenie zgłoszenia
+                </div>
+
+                <div>
+                    <button class="btn-44 t-16" type="button" @onclick="EndCustomerSubmission">
+                        <div class="d-flex-center d-justify-center">Zakończ zgłoszenie</div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-flex d-flex-wrap d-gap-30 d-row-gap-0 m-bottom-25">
+                <div class="p-10 d-flex-1 divide-bottom divide-primary-alt s-min-width-200 t-22">
+                    Zgłoszenie @CustomerSubmission.Number
+                </div>
+
+                <div class="p-10 d-flex-1 divide-bottom divide-primary-alt s-min-width-200">
+                    <div class="t-light m-bottom-5 t-22">Data dodania:</div>
+                    <div class="t-darker">@CustomerSubmission.CreationDate.ToString("dd.MM.yyyy HH:mm")</div>
+                </div>
+            </div>
+
+            <div class="d-flex d-flex-wrap d-gap-30 d-row-gap-20 m-bottom-25">
+                <div class="p-10 p-bottom-20 d-flex-1 divide-bottom-primary-alt s-min-width-200">
+                    <div class="t-light m-bottom-15 t-22">Dane klienta:</div>
+                    <div class="d-flex d-gap-10">
+                        @CustomerSubmission.CustomerFullName
+                    </div>
+
+                    <div class="d-flex d-gap-10">
+                        E-mail: <a class="t-inherit t-link-hover" href="mailto:{{@CustomerSubmission.Email}}">@CustomerSubmission.Email</a>
+                    </div>
+
+                    <div class="d-flex d-gap-10">
+                        Numer telefonu: <a class="t-inherit t-link-hover" href="tel:{{@CustomerSubmission.PhoneNumber}}">@CustomerSubmission.PhoneNumber</a>
+                    </div>
+                </div>
+                <div class="p-10 d-flex-1 divide-bottom divide-primary-alt s-min-width-200">
+                    <div class="t-light m-bottom-5 t-22">Temat zgłoszenia:</div>
+                    <div class="t-darker t-break-word">@CustomerSubmission.Subject</div>
+                </div>
+            </div>
+
+            <div class="p-bottom-20 divide-bottom divide-primary-alt">
+                <div class="d-flex d-flex-wrap d-gap-30 d-row-gap-0 m-bottom-20">
+                    <div class="p-10 d-flex-1 divide-bottom divide-primary-alt s-min-width-200">
+                        <div class="t-light m-bottom-15 t-22">Aktualny status zgłoszenia:</div>
+                        <div class="t-darker"> 
+                            
+                            @switch (CustomerSubmission.Status)
+                            {
+                                case CustomerSubmissionStatus.New:
+                                    <div>
+                                        <div class="t-16 t-darker m-bottom-10">Nowe</div>
+                                        <div class="t-14 t-light">Twoje zgłoszenie zostało złożone pomyślnie.</div>
+                                    </div>
+                                    break; 
+                                case CustomerSubmissionStatus.Responded:
+                                    <div>
+                                        <div class="t-16 t-darker m-bottom-10">Rozpatrzone</div>
+                                        <div class="t-14 t-light">Zgłoszenie zostało zbadane, a my odpowiedzieliśmy na Twoje zapytanie lub rozwiązaliśmy problem.</div>
+                                    </div>
+                                    break;
+                                case CustomerSubmissionStatus.WaitingForResponse:
+                                    <div>
+                                        <div class="t-16 t-darker m-bottom-10">W trakcie rozpatrywania</div>
+                                        <div class="t-14 t-light">Zgłoszenie znajduje się obecnie w fazie analizy przez nasz zespół.</div>
+                                    </div>
+                                    break;
+                                case CustomerSubmissionStatus.EndedAutomatically:
+                                case CustomerSubmissionStatus.EndedByCustomer:
+                                case CustomerSubmissionStatus.EndedByUser:
+                                    <div>
+                                        <div class="t-16 t-darker m-bottom-10">Zakończone</div>
+                                        <div class="t-14 t-light">Zgłoszenie zostało w pełni zakończone i zamknięte.</div>
+                                    </div>
+                                    break;
+                            }
+
+                        </div>
+                    </div>
+
+                    <div class="p-10 d-flex-1 divide-bottom divide-primary-alt s-min-width-200">
+                        <div class="t-light m-bottom-5 t-22">Data ostatniej aktualizacji:</div>
+                        <div class="t-darker">@CustomerSubmission.LastUpdateDate.ToString("dd-MM-yyyy-HH:mm")</div>
+                    </div>
+                </div>
+
+                <div class="p-10 m-top-25">
+                    <div class="t-light m-bottom-5 t-22">Treść zgłoszenia:</div>
+                    <pre class="t-darker">@CustomerSubmission.Content</pre>
+                </div>
+            </div>
+
+            <div>
+                @if (Messages!.Count>0)
+                {
+                    <div>
+                        @foreach (var message in Messages)
+                        {
+                            <div class="p-bottom-20 divide-bottom divide-primary-alt m-bottom-10 d-flex d-gap-10 @(message.IsFromCustomer ? string.Empty : "m-left-15")">
+                                <div>
+                                    <div>
+                                        <span class="t-darker m-bottom-15">@message.AuthorName</span>
+                                        <span class="t-light m-bottom-5 t-14">@message.CreationDate.ToString("dd.MM.yyyy HH:mm")</span>
+                                    </div>
+                                    <pre class="t-darker">
+                                        @message.Body
+                                    </pre>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+                <div class="m-bottom-50 m-top-25">
+                
+                    @if (CustomerSubmission?.Status.IsEnded() == true)
+                    {
+                        <div class="t-center">
+                            <div class="t-22 t-darker m-bottom-10">
+                                Twoje zgłoszenie zostało zakończone. Jeśli będziesz mieć nowe pytania lub przyda Ci się nasza pomoc, ponownie skorzystaj z formularza zgłoszeniowego.
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <EditForm OnSubmit="SendMessage" Model="Message" FormName="MessageForm">
+                            <div class="t-22 t-darker m-bottom-10">
+                                Czy masz jeszcze jakieś pytania?
+                            </div>
+                            <div class="t-light m-bottom-10">
+                                <div>Jesteśmy cały czas do Twojej dyspozycji.</div>
+                                <div>Jeśli po naszej ostatniej rozmowie masz jakiekolwiek wątpliwości, nie krępuj się i skontaktuj się z nami.</div>
+                            </div>
+                            <label class="field field-optional d-flex-1 s-min-width-200 t-22 m-top-25" for="msg">
+                                Treść wiadomości:
+                            </label>
+                            <div class="d-flex-column m-bottom-10">    
+                                <InputTextArea class="s-min-height-100" id="msg" @bind-Value="Message!.Body" required />
+                            </div>
+                            <div class="d-flex-column d-items-flex-end">
+                                <button class="btn-44 t-16" type="submit">
+                                    Wyślij
+                                </button>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@code {
+    [Parameter]
+    public string? CustomerSubmissionUrlId { get; set; }
+
+    private CustomerSubmissionDto? CustomerSubmission { get; set; }
+    private List<MessageDto>? Messages{ get; set; }
+
+    [SupplyParameterFromForm(FormName = "MessageForm")]
+    public NewMessageDto? Message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(CustomerSubmissionUrlId))
+        {
+            return;
+        }
+
+        var customerSubmission = await CustomerSubmissionClient.GetCustomerSubmission(CustomerSubmissionUrlId);
+
+        if (customerSubmission != null)
+        {
+            CustomerSubmission = customerSubmission;
+        }
+
+        var messages = await CustomerSubmissionClient.GetMessages(CustomerSubmissionUrlId);
+
+        if (messages != null)
+        {
+            Messages = messages.Messages.ToList();
+        }
+        else
+        {
+            Messages = new List<MessageDto>();
+        }
+
+        Message ??= new();
+        Message.IsFromCustomer = true;
+        Message.AuthorName = CustomerSubmission?.CustomerFullName ?? string.Empty;
+    }
+
+    private async Task EndCustomerSubmission()
+    {
+        if (string.IsNullOrEmpty(CustomerSubmissionUrlId))
+        {
+            return;
+        }
+
+        var submission = await CustomerSubmissionClient.EndCustomerSubmission(CustomerSubmissionUrlId);
+
+        if (submission == null || CustomerSubmission == null)
+        {
+            return;
+        }
+        else
+        {
+            CustomerSubmission.LastUpdateDate = submission.LastUpdateDate;
+            CustomerSubmission.Status = submission.Status;
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrEmpty(CustomerSubmissionUrlId) || Message == null || Messages == null)
+        {
+            return;
+        }
+
+        var uploadMessageResult = await CustomerSubmissionClient.UploadMessage(CustomerSubmissionUrlId, Message);
+
+        if (uploadMessageResult != null)
+        {
+            Messages.Add(uploadMessageResult.Message);
+        }
+    }
+}

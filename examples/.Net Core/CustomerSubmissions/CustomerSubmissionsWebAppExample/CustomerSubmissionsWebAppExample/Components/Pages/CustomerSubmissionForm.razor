@@ -1,0 +1,149 @@
+﻿@page "/form"
+@inject IParametersClient ParametersClient
+@inject ICustomerSubmissionClient CustomerSubmissionClient
+@inject ICategoriesClient CategoriesClient
+@inject NavigationManager NavigationManager
+
+<PageTitle>Formularz zgłoszenia</PageTitle>
+
+@if (!Initialized)
+{
+    <h1>Ładowanie...</h1>
+}
+else
+{
+    @if (FormDisabled)
+    {
+        <h1>Nie znaleziono strony.</h1>
+        <p>Strona o podanym adresie nie została odnaleziona</p>
+    }
+    else
+    {
+        <section class="core t-dark">
+
+
+            <EditForm OnSubmit="Submit" Model="CustomerSubmission" FormName="CustomerSubmissionForm">
+                <div class="t-center t-36 t-darker">
+                    <span>Formularz kontaktowy</span>
+                </div>
+
+                <div class="t-center t-24 m-bottom-25">
+                    <span>Wypełnij formularz</span>
+                </div>
+
+                @if (_formConfiguration?.FormFieldModes.CustomerFullName != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="name">
+                            Imię i nazwisko lub nazwa firmy:
+                            <InputText id="name" @bind-Value="CustomerSubmission!.CustomerFullName" required="@(_formConfiguration?.FormFieldModes.CustomerFullName == FieldMode.Required)" />
+                        </label>
+                    </div>
+                }
+
+                @if (_formConfiguration?.FormFieldModes.Email != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="email">
+                            Email:
+                        </label>
+                        <InputText id="email" @bind-Value="CustomerSubmission!.Email" required="@(_formConfiguration?.FormFieldModes.Email == FieldMode.Required)" />
+                    </div>
+                }
+
+                @if (_formConfiguration?.FormFieldModes.PhoneNumber != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="phone">
+                            Telefon:
+                            <InputText id="phone" @bind-Value="CustomerSubmission!.PhoneNumber" required="@(_formConfiguration?.FormFieldModes.PhoneNumber == FieldMode.Required)" />
+                        </label>
+                    </div>
+                }
+
+                @if (_formConfiguration?.FormFieldModes.Subject != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="subject">
+                            Temat:
+                            <InputText id="subject" @bind-Value="CustomerSubmission!.Subject" required="@(_formConfiguration?.FormFieldModes.Subject == FieldMode.Required)" />
+                        </label>
+                    </div>
+                }
+
+                @if (_formConfiguration?.FormFieldModes.Category != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="subject">
+                            Kategoria:
+                            <InputSelect id="category" @bind-Value="CustomerSubmission!.CategoryId" required="@(_formConfiguration?.FormFieldModes.Category == FieldMode.Required)">
+                                @if (_categories != null)
+                                {
+                                    @foreach (var category in _categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                }
+                            </InputSelect>
+                        </label>
+
+                    </div>
+                }
+
+                @if (_formConfiguration?.FormFieldModes.Content != FieldMode.Disabled)
+                {
+                    <div class="t-center m-bottom-5">
+                        <label class="field" for="message">
+                            Wiadomość:
+                            <InputTextArea id="message" @bind-Value="CustomerSubmission!.Content" required="@(_formConfiguration?.FormFieldModes.Content == FieldMode.Required)" />
+                        </label>
+                    </div>
+                }
+
+                <div class="t-center m-bottom-5">
+                    <button class="btn-44" type="submit">Wyślij</button>
+                </div>
+            </EditForm>
+        </section>
+    }
+}
+
+@code {
+    private FormConfigurationDto? _formConfiguration;
+    private CompanyParametersDto? _companyParameters;
+    private IEnumerable<CategoryDto>? _categories;
+
+    private bool FormDisabled => _companyParameters?.FeatureEnabled != true || _companyParameters?.FormEnabled != true;
+    private bool Initialized { get; set; }
+
+    [SupplyParameterFromForm(FormName = "CustomerSubmissionForm")]
+    public NewCustomerSubmissionDto? CustomerSubmission { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CustomerSubmission ??= new();
+
+        _formConfiguration = await ParametersClient.GetFormConfiguration();
+        _companyParameters = await ParametersClient.GetCompanyParameters();
+
+        var categoriesResult = await CategoriesClient.GetCategories();
+        _categories = categoriesResult?.Categories;
+
+        Initialized = true;
+    }
+
+    private async Task Submit()
+    {
+        if (CustomerSubmission == null)
+        {
+            return;
+        }
+
+        var result = await CustomerSubmissionClient.UploadCustomerSubmission(CustomerSubmission);
+
+        if (result != null)
+        {
+            NavigationManager.NavigateTo($"./details/{result.CustomerSubmission.UrlIdenfitier}");
+        }
+    }
+}
