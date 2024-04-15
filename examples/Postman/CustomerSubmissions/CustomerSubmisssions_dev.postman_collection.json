@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "a8fa3fed-9aa4-41c7-9c88-27b4649d3e96",
+		"name": "CustomerSubmisssions_dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7191555"
+	},
+	"item": [
+		{
+			"name": "CompanyParameters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/companyParameters",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"companyParameters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FormConfiguration",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/formConfiguration",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"formConfiguration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CustomerSubmission",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/customerSubmission?customerSubmissionUrlIdentifier={{customersubmission_url_identifier}}",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"customerSubmission"
+					],
+					"query": [
+						{
+							"key": "customerSubmissionUrlIdentifier",
+							"value": "{{customersubmission_url_identifier}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Messages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/messages?customerSubmissionUrlIdentifier={{customersubmission_url_identifier}}",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"messages"
+					],
+					"query": [
+						{
+							"key": "customerSubmissionUrlIdentifier",
+							"value": "{{customersubmission_url_identifier}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/categories",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EndCustomerSubmission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/customerSubmission/end?customerSubmissionUrlId={{customersubmission_url_identifier}}",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"customerSubmission",
+						"end"
+					],
+					"query": [
+						{
+							"key": "customerSubmissionUrlId",
+							"value": "{{customersubmission_url_identifier}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CustomerSubmission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customerFullName\": \"Jan Kowalski\",\r\n    \"email\": \"jan.kowalski@example.com\",\r\n    \"phoneNumber\": \"123456789\",\r\n    \"subject\": \"Temat zgłoszenia\",\r\n    \"content\": \"Treść zgłoszenia\",\r\n    \"categoryId\": \"4b1617e6-b272-4d15-9260-3bce657d96bc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{customersubmissions_url}}/customerSubmission",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"customerSubmission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isFromCustomer\": true,\r\n    \"authorName\": \"Jan Kowalski\",\r\n    \"body\": \"Przykładowa treść wiadomości\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{customersubmissions_url}}/message?customerSubmissionUrlId={{customersubmission_url_identifier}}",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"message"
+					],
+					"query": [
+						{
+							"key": "customerSubmissionUrlId",
+							"value": "{{customersubmission_url_identifier}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

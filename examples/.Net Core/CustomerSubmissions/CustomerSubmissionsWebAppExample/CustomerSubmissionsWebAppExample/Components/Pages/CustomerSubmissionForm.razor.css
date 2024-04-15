@@ -1,0 +1,54 @@
+﻿.d-flex {
+    display: flex;
+}
+
+.m-top-10 {
+    margin-top: 10px;
+}
+
+.m-bottom-5 {
+    margin-bottom: 5px
+}
+
+.m-bottom-25 {
+    margin-bottom: 25px;
+}
+
+.t-center {
+    text-align: center;
+}
+
+
+.t-dark {
+    color: var(--color-dark);
+}
+
+
+.t-24 {
+    font-size: 24px;
+    letter-spacing: 0.75px;
+    line-height: 32px;
+}
+
+.t-36 {
+    font-size: 36px;
+    letter-spacing: 0.75px;
+    line-height: 44px;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    margin: 0;
+}
+
+.core {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    box-sizing: border-box;
+}

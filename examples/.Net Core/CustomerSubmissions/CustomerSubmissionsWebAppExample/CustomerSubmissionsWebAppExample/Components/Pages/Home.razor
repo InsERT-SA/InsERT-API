@@ -1,0 +1,21 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Zgłoszenia</PageTitle>
+
+<h1>Witaj w przykładowej aplikacji wykorzystującej API Zgłoszeń klientów</h1>
+
+<div>
+    <span>Jest to aplikacja demonstracyjna. Nie używaj tego kodu w środowisku produkcyjnym.</span>
+    <span>Aby skorzystać z przykładowej aplikacji, w pliku appsettings.json wypełnij pole SubscriptionKey kluczem subskrypcji otzymanym z konta insert.</span>
+    <button @onclick="NavigateToForm">Przejdź do formularza</button>
+</div>
+
+
+@code
+{
+    private void NavigateToForm()
+    {
+        NavigationManager.NavigateTo("/form");
+    }
+}
