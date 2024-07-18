@@ -17,7 +17,8 @@ namespace MvcExample.Infrastructure.Extensions
         {
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
-            var insertApiOptions = builder.Configuration.GetSection(nameof(InsertApiOptions)).Get<InsertApiOptions>();
+            var insertApiOptions = builder.Configuration.GetSection(nameof(InsertApiOptions)).Get<InsertApiOptions>()
+                ?? throw new InvalidOperationException($"No {nameof(InsertApiOptions)}");
 
             builder.Services
                 .AddHttpClient()
@@ -54,13 +55,11 @@ namespace MvcExample.Infrastructure.Extensions
         public static WebApplicationBuilder AddAuthorization(this WebApplicationBuilder builder)
         {
             builder.Services
-                .AddAuthorization(options => 
+                .AddAuthorizationBuilder()
+                .AddPolicy(PolicyDefaults.DefaultPolicyName, policy =>
                 {
-                    options.AddPolicy(PolicyDefaults.DefaultPolicyName, policy =>
-                    {
-                        policy
-                            .RequireAuthenticatedUser();
-                    });
+                    policy
+                        .RequireAuthenticatedUser();
                 });
 
             return builder;
@@ -76,13 +75,14 @@ namespace MvcExample.Infrastructure.Extensions
 
         public static WebApplicationBuilder AddServices(this WebApplicationBuilder builder)
         {
-            var subiekt123ApiOptions = builder.Configuration.GetSection(nameof(Subiekt123ApiOptions)).Get<Subiekt123ApiOptions>();
+            var subiekt123ApiOptions = builder.Configuration.GetSection(nameof(Subiekt123ApiOptions)).Get<Subiekt123ApiOptions>()
+                ?? throw new InvalidOperationException($"No {nameof(InsertApiOptions)}");
 
             builder.Services
                 .AddSingleton(subiekt123ApiOptions)
                 .AddHttpContextAccessor()
                 .AddTransient<IInsertApiTokenService, InsertApiTokenService>()
-                .AddHttpClient<ISubiekt123Service, Subiekt123Service>(client => 
+                .AddHttpClient<ISubiekt123Service, Subiekt123Service>(client =>
                 {
                     client.BaseAddress = new Uri(subiekt123ApiOptions.Url);
                 });

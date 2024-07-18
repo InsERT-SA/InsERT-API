@@ -7,6 +7,6 @@
         public string ClientId { get; init; } = string.Empty;
         public string ClientSecret { get; init; } = string.Empty;
         public string ResponseType { get; init; } = string.Empty;
-        public string[] Scopes { get; init; } = Array.Empty<string>();
+        public string[] Scopes { get; init; } = [];
     }
 }

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json;
 
 namespace MvcExample.Infrastructure.Extensions
 {
@@ -16,7 +16,7 @@ namespace MvcExample.Infrastructure.Extensions
         {
             var json = await httpResponseMessage.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonSerializer.Deserialize<T>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         }
 
         public static async Task<Exception> HandleError(this HttpResponseMessage httpResponseMessage)
@@ -24,7 +24,7 @@ namespace MvcExample.Infrastructure.Extensions
             var errorMessage = httpResponseMessage.Content != null
                 ? await httpResponseMessage.Content.ReadAsStringAsync()
                 : string.Empty;
-            
+
             return new InvalidOperationException(errorMessage);
         }
     }

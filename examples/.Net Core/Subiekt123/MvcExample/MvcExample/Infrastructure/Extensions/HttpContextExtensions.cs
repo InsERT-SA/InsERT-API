@@ -10,8 +10,7 @@ namespace MvcExample.Infrastructure.Extensions
 
         public static async Task<string?> GetAccessToken(this HttpContext? httpContext)
         {
-            if (httpContext == null)
-                throw new ArgumentNullException(nameof(httpContext));
+            ArgumentNullException.ThrowIfNull(httpContext);
 
             return await httpContext.GetTokenAsync(AccessTokenKey)
                 ?? throw new InvalidOperationException("Missing access token.");
