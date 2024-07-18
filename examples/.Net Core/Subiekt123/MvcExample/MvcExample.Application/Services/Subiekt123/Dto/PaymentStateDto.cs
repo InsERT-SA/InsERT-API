@@ -4,7 +4,7 @@
     {
         Paid,
         Unpaid,
-        Overdue, 
+        Overdue,
         NotSubjectToPayment
     }
 }

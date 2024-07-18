@@ -56,12 +56,12 @@ namespace MvcExample.Infrastructure.Authorization
 
             var expirationValue = DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn).ToString("o", CultureInfo.InvariantCulture);
 
-            context.Properties.StoreTokens(new[]
-            {
+            context.Properties.StoreTokens(
+            [
                 new AuthenticationToken { Name = HttpContextExtensions.RefreshTokenKey, Value = tokenResponse.RefreshToken },
                 new AuthenticationToken { Name = HttpContextExtensions.AccessTokenKey, Value = tokenResponse.AccessToken },
                 new AuthenticationToken { Name = HttpContextExtensions.ExpiresAtKey, Value = expirationValue }
-            });
+            ]);
 
             context.ShouldRenew = true;
         }

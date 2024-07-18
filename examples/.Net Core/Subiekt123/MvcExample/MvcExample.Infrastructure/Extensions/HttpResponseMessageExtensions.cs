@@ -24,7 +24,7 @@ namespace MvcExample.Infrastructure.Extensions
             var errorMessage = httpResponseMessage.Content != null
                 ? await httpResponseMessage.Content.ReadAsStringAsync()
                 : string.Empty;
-            
+
             return new InvalidOperationException(errorMessage);
         }
     }

@@ -31,7 +31,7 @@ namespace MvcExample.Infrastructure.Services.Subiekt123
                 .WithBearerTokenAuthorization(_insertApiTokenService);
 
             return await _httpClient.HandleWithContent<IEnumerable<ClientDto>>(request)
-                ?? Enumerable.Empty<ClientDto>();
+                ?? [];
         }
 
         public async Task<IEnumerable<DocumentDto>> GetDocuments(int pageNumber)
@@ -42,7 +42,7 @@ namespace MvcExample.Infrastructure.Services.Subiekt123
                 .WithBearerTokenAuthorization(_insertApiTokenService);
 
             return await _httpClient.HandleWithContent<IEnumerable<DocumentDto>>(request)
-                ?? Enumerable.Empty<DocumentDto>();
+                ?? [];
         }
 
         public async Task<IEnumerable<ProductDto>> GetProducts(int pageNumber)
@@ -53,7 +53,7 @@ namespace MvcExample.Infrastructure.Services.Subiekt123
                 .WithBearerTokenAuthorization(_insertApiTokenService);
 
             return await _httpClient.HandleWithContent<IEnumerable<ProductDto>>(request)
-                ?? Enumerable.Empty<ProductDto>();
+                ?? [];
         }
     }
 }
