@@ -45,7 +45,7 @@ namespace MvcExample.Infrastructure.Authorization
             using var httpClient = _httpClientFactory.CreateClient();
             var tokenClient = new TokenClient(httpClient, tokenClientOptions);
             var refreshToken = context.Properties.GetTokenValue(HttpContextExtensions.RefreshTokenKey);
-            var tokenResponse = await tokenClient.RequestRefreshTokenAsync(refreshToken, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var tokenResponse = await tokenClient.RequestRefreshTokenAsync(refreshToken!, cancellationToken: cancellationToken).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -58,8 +58,8 @@ namespace MvcExample.Infrastructure.Authorization
 
             context.Properties.StoreTokens(
             [
-                new AuthenticationToken { Name = HttpContextExtensions.RefreshTokenKey, Value = tokenResponse.RefreshToken },
-                new AuthenticationToken { Name = HttpContextExtensions.AccessTokenKey, Value = tokenResponse.AccessToken },
+                new AuthenticationToken { Name = HttpContextExtensions.RefreshTokenKey, Value = tokenResponse.RefreshToken! },
+                new AuthenticationToken { Name = HttpContextExtensions.AccessTokenKey, Value = tokenResponse.AccessToken! },
                 new AuthenticationToken { Name = HttpContextExtensions.ExpiresAtKey, Value = expirationValue }
             ]);
 
