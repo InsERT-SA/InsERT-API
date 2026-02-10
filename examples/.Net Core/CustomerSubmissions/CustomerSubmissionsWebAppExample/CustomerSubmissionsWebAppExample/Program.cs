@@ -1,6 +1,5 @@
 using CustomerSubmissionsWebAppExample.Client;
 using CustomerSubmissionsWebAppExample.Components;
-using CustomerSubmissionsWebAppExample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +8,6 @@ builder.Services
     .AddTransient<ICategoriesClient, CategoriesClient>()
     .AddTransient<IParametersClient, ParametersClient>()
     .AddTransient<ICustomerSubmissionClient, CustomerSubmissionClient>()
-    .AddTransient<IAppSettings, AppSettings>()
     .AddRazorComponents()
     .AddInteractiveServerComponents();
 
