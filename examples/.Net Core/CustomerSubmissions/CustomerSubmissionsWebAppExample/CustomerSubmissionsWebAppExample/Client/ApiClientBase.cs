@@ -1,5 +1,4 @@
-﻿using CustomerSubmissionsWebAppExample.Configuration;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 
 namespace CustomerSubmissionsWebAppExample.Client
