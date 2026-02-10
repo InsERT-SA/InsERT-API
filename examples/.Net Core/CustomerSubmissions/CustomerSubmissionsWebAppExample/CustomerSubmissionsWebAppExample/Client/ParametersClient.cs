@@ -1,17 +1,9 @@
-﻿using CustomerSubmissionsWebAppExample.Configuration;
-using CustomerSubmissionsWebAppExample.Models;
+﻿using CustomerSubmissionsWebAppExample.Models;
 
 namespace CustomerSubmissionsWebAppExample.Client
 {
-    public class ParametersClient : ApiClientBase, IParametersClient
+    public class ParametersClient(IHttpClientFactory httpClientFactory) : ApiClientBase(httpClientFactory), IParametersClient
     {
-        public ParametersClient(
-            IAppSettings appSettings,
-            IHttpClientFactory httpClientFactory) 
-            : base(appSettings, httpClientFactory)
-        {
-        }
-
         public async Task<CompanyParametersDto?> GetCompanyParameters()
         {
             return await SendHttpRequestAndDeserializeResponse<CompanyParametersDto>($"companyParameters", HttpMethod.Get);

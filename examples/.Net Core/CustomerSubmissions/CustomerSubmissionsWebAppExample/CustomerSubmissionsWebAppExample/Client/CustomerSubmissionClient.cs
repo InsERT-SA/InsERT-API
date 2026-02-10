@@ -1,17 +1,9 @@
-﻿using CustomerSubmissionsWebAppExample.Configuration;
-using CustomerSubmissionsWebAppExample.Models;
+﻿using CustomerSubmissionsWebAppExample.Models;
 
 namespace CustomerSubmissionsWebAppExample.Client
 {
-    public class CustomerSubmissionClient : ApiClientBase, ICustomerSubmissionClient
+    public class CustomerSubmissionClient(IHttpClientFactory httpClientFactory) : ApiClientBase(httpClientFactory), ICustomerSubmissionClient
     {
-        public CustomerSubmissionClient(
-            IAppSettings appSettings,
-            IHttpClientFactory httpClientFactory) 
-            : base(appSettings, httpClientFactory)
-        {
-        }
-
         public async Task<CustomerSubmissionDto?> EndCustomerSubmission(string customerSubmissionUrlId)
         {
             return await SendHttpRequestAndDeserializeResponse<CustomerSubmissionDto>($"customerSubmission/end?customerSubmissionUrlId={customerSubmissionUrlId}", HttpMethod.Post);
