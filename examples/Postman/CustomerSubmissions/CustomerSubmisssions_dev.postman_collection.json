@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a8fa3fed-9aa4-41c7-9c88-27b4649d3e96",
+		"_postman_id": "e1520b4f-41e2-4e6e-9d36-66864d347170",
 		"name": "CustomerSubmisssions_dev",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7191555"
@@ -134,6 +134,53 @@
 			"response": []
 		},
 		{
+			"name": "LatestCustomerConsent",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/customer-consent/latest",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"customer-consent",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CustomFields",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{subscription_key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{customersubmissions_url}}/customFields",
+					"host": [
+						"{{customersubmissions_url}}"
+					],
+					"path": [
+						"customFields"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "EndCustomerSubmission",
 			"request": {
 				"method": "POST",
@@ -176,7 +223,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"customerFullName\": \"Jan Kowalski\",\r\n    \"email\": \"jan.kowalski@example.com\",\r\n    \"phoneNumber\": \"123456789\",\r\n    \"subject\": \"Temat zgłoszenia\",\r\n    \"content\": \"Treść zgłoszenia\",\r\n    \"categoryId\": \"4b1617e6-b272-4d15-9260-3bce657d96bc\"\r\n}",
+					"raw": "{\r\n    \"customerFullName\": \"Jan Kowalski\",\r\n    \"email\": \"jan.kowalski@example.com\",\r\n    \"phoneNumber\": \"123456789\",\r\n    \"subject\": \"Temat zgłoszenia\",\r\n    \"content\": \"Treść zgłoszenia\",\r\n    \"categoryId\": \"4b1617e6-b272-4d15-9260-3bce657d96bc\",\r\n    \"customFieldValues\": [\r\n        {\r\n        \"customFieldId\": \"253faa79-6de1-4877-9921-b378bbced1a4\",\r\n        \"value\": \"Wartość własnego pola\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -184,11 +231,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{customersubmissions_url}}/customerSubmission",
+					"raw": "http://localhost:7280/api/customerSubmission",
+					"protocol": "http",
 					"host": [
-						"{{customersubmissions_url}}"
+						"localhost"
 					],
+					"port": "7280",
 					"path": [
+						"api",
 						"customerSubmission"
 					]
 				}
@@ -208,7 +258,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"isFromCustomer\": true,\r\n    \"authorName\": \"Jan Kowalski\",\r\n    \"body\": \"Przykładowa treść wiadomości\"\r\n}",
+					"raw": "{\r\n    \"authorName\": \"Jan Kowalski\",\r\n    \"body\": \"Przykładowa treść wiadomości\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
