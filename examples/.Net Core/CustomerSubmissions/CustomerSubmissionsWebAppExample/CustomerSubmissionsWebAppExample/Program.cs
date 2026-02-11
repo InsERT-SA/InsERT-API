@@ -1,6 +1,5 @@
 using CustomerSubmissionsWebAppExample.Client;
 using CustomerSubmissionsWebAppExample.Components;
-using CustomerSubmissionsWebAppExample.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +8,14 @@ builder.Services
     .AddTransient<ICategoriesClient, CategoriesClient>()
     .AddTransient<IParametersClient, ParametersClient>()
     .AddTransient<ICustomerSubmissionClient, CustomerSubmissionClient>()
-    .AddTransient<IAppSettings, AppSettings>()
     .AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddHttpClient("customerSubmissionsApi", client => client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]!));
+builder.Services.AddHttpClient("customerSubmissionsApi", client =>
+{
+    client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]!);
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", builder.Configuration["SubscriptionKey"]);
+});
 
 var app = builder.Build();
 
